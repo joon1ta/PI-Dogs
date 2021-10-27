@@ -23,6 +23,17 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    life: DataTypes.STRING,
+    life:{ 
+      type: DataTypes.STRING,
+      defaultValue: "No Data to show"
+    },
+    photo: {
+      type: DataTypes.STRING,
+      defaultValue: "No Data to show"
+    },
+    origin: {
+      type: DataTypes.STRING,
+      defaultValue: "No Data to show"
+    }
   });
 };
