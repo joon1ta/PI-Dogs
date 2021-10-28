@@ -22,7 +22,7 @@ const getDogsBreeds = async () => {
         temperament: breed.temperament?.split(",").map((temp) => temp.trim()),
       };
     });
-    console.log(mapData);
+   
     return mapData;
   } catch (error) {
     console.log(error);
@@ -41,10 +41,44 @@ const getDbDogsBreeds = async () => {
     })
 }
 
+const getBreeds = async () => {
+  const apiBreeds = await getDogsBreeds();
+  const dbBreeds = await getDbDogsBreeds();
+  const mapDbBreed = dbBreeds.map(breed => {
+    return {
+      id: breed.id,
+      name: breed.name,
+      height: breed.height,
+      weigth: breed.weigth,
+      life: breed.life,
+      photo: breed.photo,
+      origin: breed.origin,
+      temperament: breed.temperaments.map(t => t.name)
+    }
+  })
+  const breeds = apiBreeds.concat(mapDbBreed);
+  return breeds
+}
+
+const getTemperaments = async () => {
+  const breeds = await getBreeds();
+  breeds.forEach(breed => {
+    if(breed.temperament) {
+      for (let i = 0; i < breed.temperament.length; i++) {
+       Temperament.findOrCreate({
+         where: {name: breed.temperament[i].trim()}
+       })
+        
+      }
+    }
+  })
+  return await Temperament.findAll()
+}
+
 
 module.exports = {
-    getDogsBreeds,
-    getDbDogsBreeds
+    getTemperaments,
+    getBreeds
 }
 
 
