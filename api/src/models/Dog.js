@@ -14,14 +14,30 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    height: {
-      type: DataTypes.STRING,
+    original: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
       allowNull: false,
-
     },
-    weigth: {
+    minHeight: {
       type: DataTypes.STRING,
       allowNull: false,
+      defaultValue: "No Data to show",
+    },
+    maxHeight: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "No Data to show",
+    },
+    minWeight: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "No Data to show",
+    },
+    maxWeight: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "No Data to show",
     },
     life:{ 
       type: DataTypes.STRING,

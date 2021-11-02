@@ -16,7 +16,7 @@ export function getBreeds() {
 
 export function getTemperaments() {
     return async function (dispatch) {
-        return await axios.get('http://localhost:3002/temperament')
+        return await axios.get('http://localhost:3002/temperaments')
                .then(response => {
                    dispatch({
                        type: GET_TEMPERAMENTS,

@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './DogsCardsContainer.module.css'
-const DogsCardsContainer = ({id,name,weight,photo,temperament}) => {
+const DogsCardsContainer = ({id,name,minWeight,maxWeight,photo,temperament}) => {
     
     
     return (
@@ -10,7 +10,7 @@ const DogsCardsContainer = ({id,name,weight,photo,temperament}) => {
            </div>
            <div className={s.wrapperTitles}>
                <h3>Breed name: {name}</h3>
-               <p>Weight: {weight} Kilos</p>
+               <p>Weight: {minWeight} - {maxWeight} Kilos</p>
            </div>
            <div className={s.wrapperTemperament}>
                Temperaments: {temperament?.join(' | ')}
