@@ -1,0 +1,85 @@
+.wrapper {
+   background-color: rgba(238, 231, 222, 0.493);
+   height: 100vh;
+   padding: 5px;
+}
+.wrapperLoading {
+    text-align: center;
+    font-size: 35px;
+    color: #525C5B;
+    margin-top: 100px;
+}
+.wrapperOrigin {
+    margin-bottom: 20px;;
+}
+.wrapperDetail{
+    margin-bottom: 20px;
+}
+.h2 {
+    color: #525C5B;
+    text-align: center;
+    margin-bottom: 20px;
+    
+}
+.h3 {
+    color: #525C5B;
+    margin-bottom: 10px;
+}
+.h3 span {
+    color: #7ED5CD;
+    letter-spacing: .5px
+}
+.p {
+    color: #7ED5CD;
+    font-size: 18px;
+}
+.p span {
+    color: #525C5B;
+}
+.myButton {
+    margin-top: 20px;
+    margin-left: 80px;
+	background:linear-gradient(to bottom, #7ED5CD 5%, #9ccec9ad 100%);
+	background-color:#7ED5CD;
+	border-radius:21px;
+    border: none;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-weight: 500;
+	font-size:20px;
+	padding:9px 33px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #467772;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #9ccec9ad 5%, #7ED5CD 100%);
+	background-color:#b3b6b19d;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+
+@media (min-width: 768px) {
+    .myButton {
+        margin-left: 270px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .myButton {
+        margin-left: 10px;
+    }
+    .wrapper {
+        max-width: 1200px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .wrapperImg {
+        max-width: 400px;
+        text-align: center;
+        margin-left: 400px;
+    }
+}

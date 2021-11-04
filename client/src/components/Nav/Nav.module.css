@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #428881;
+    height: 190px;
+    text-align: center;
+}
+.filterBtnContainer {
+    display: flex;
+    flex-direction: column;
+}
+.title {
+   color:#7ED5CD;
+}
+.title span {
+    color: white;
+}
+
+.btn {
+    border: none;
+    color: white;
+    background-color: #428881;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.btn:hover {
+    cursor: pointer;
+    color: black;
+    transition: all 0.4s ease-in-out;
+}
+
+.filterInputs{
+    margin-left: 5px;
+    border: none;
+    border-radius: 3px
+}
+.heavier {
+    margin-left: 8px;
+}
+.createBtnContainer {
+    margin-left: 28px;
+}
+
+
+@media (min-width: 1200px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        height: 120px;
+        align-items: center;
+        justify-content: space-around;
+    }
+}

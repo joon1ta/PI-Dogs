@@ -2,4 +2,47 @@
     display: grid;
     grid-template-columns: 100%;
     margin-top: 60px;
+    margin-left: 27px;
+    gap: 20px;
+    
+}
+.wrapperLoading {
+    text-align: center;
+    font-size: 35px;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.link:hover {
+   cursor: pointer;
+   transition: all 0.2s ease-in-out;
+   transform: scale(1.03);
+   background-color: #7ed5cc1c;
+}
+
+
+@media (min-width: 768px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 3fr);
+        margin-top: 60px;
+        
+        gap: 20px;
+        
+    }
+}
+
+
+
+@media (min-width: 1200px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(4, 4fr);
+        margin-top: 60px;
+        margin-right: 20px;
+        gap: 40px;
+        
+    }
 }

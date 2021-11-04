@@ -1,0 +1,143 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  
+  width: 100vw;
+  height: 100vh;
+
+  align-items: center;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 43px;
+  width: 75vw;
+}
+
+.formInputs {
+  margin-top: 10px;
+  padding-left: 10px;
+  border-radius: 21px;
+  height: 30px;
+  margin-bottom: 15px;
+  border: 1px solid #7ed5cd;
+}
+.tempsInput{
+    border: 1px solid #7ed5cd;
+}
+
+.tempWrapper {
+    margin-top: 10px;
+    
+}
+.tempWrapper textarea {
+   width: 275px;
+ 
+   border-radius: 5px;
+   margin-left: 45px;
+}
+
+.tempBtnWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    gap: 3px;
+    padding: 5px;
+    width: 280px;
+    margin-left: 40px;
+}
+.tempBtn{
+    font-size: 12px;
+    margin-top: 10px;
+    border: 1px solid #7ed5cd;
+    background: linear-gradient(to bottom, #5ea099 5%, #52928cad 100%);
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: 500;
+
+}
+.tempBtn:hover {
+    color: #467772;
+    background: aliceblue;
+    transition: all 0.3s ease-in-out;
+}
+
+.myButton {
+  margin-top: 100px;
+  background: linear-gradient(to bottom, #7ed5cd 5%, #9ccec9ad 100%);
+  
+  border-radius: 21px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 9px 33px;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #467772;
+}
+.myButton:hover {
+  background: linear-gradient(to bottom, #9ccec9ad 5%, #7ed5cd 100%);
+  background-color: #b3b6b19d;
+}
+.myButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.myButtondisabled {
+  margin-top: 100px;
+  background: linear-gradient(to bottom, #7ed5cc69 5%, #9ccec993 100%);
+  background-color: #7ed5cc2f;
+  border-radius: 21px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 9px 33px;
+  text-decoration: none;
+  text-shadow: 0px 0px 0px #467772;
+  margin-left: 12px;
+  margin-right: 10px;
+}
+
+
+/** Errrors **/
+
+.textHasErrors {
+    color: red;
+    font-weight: 500;
+  }
+  
+  .inputHasErrors {
+padding-left: 10px;
+  border-radius: 21px;
+  height: 30px;
+  border: 1px solid red;
+    background-color: transparent;
+    outline: none;
+    
+   }
+  
+.tempsInputHasErrors {
+    padding-left: 10px;
+    border-radius: 15px;
+    height: 30px;
+  
+    border: 1px solid red;
+    background-color: transparent;
+    outline: none;
+  }
+
+  .tempWrapper .textHasErrors {
+      margin-left: 50px;
+  }

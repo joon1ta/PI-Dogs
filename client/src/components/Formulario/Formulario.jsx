@@ -1,12 +1,54 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import s from "./Formulario.module.css";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+const validateForm = (form) => {
+  let errors = {
+    hasErrors: false,
+  };
+
+  if (!/^[a-zA-Z ]+$/.test(form.name)) {
+    errors.name = "Name must be only characters";
+    errors.hasErrors = true;
+  } else if (!/^[a-zA-Z ]+$/.test(form.origin)) {
+    errors.origin = "Origin must be onlye characters";
+    errors.hasErrors = true;
+  } else if (!/^[0-9]+$/.test(form.minHeight)) {
+    errors.minHeight = "Height must be a positive number";
+    errors.hasErrors = true;
+  } else if (!/^[0-9]+$/.test(form.maxHeight)) {
+    errors.maxHeight = "Height must be a positive number";
+    errors.hasErrors = true;
+  } else if (!/^[0-9]+$/.test(form.minWeight)) {
+    errors.minWeight = "Weight must be a positive number";
+    errors.hasErrors = true;
+  } else if (!/^[0-9]+$/.test(form.maxWeight)) {
+    errors.maxWeight = "Weight must be a positive number";
+    errors.hasErrors = true;
+  } else if (!/^[0-9]+$/.test(form.life)) {
+    errors.life = "Life span must be a positive number";
+    errors.hasErrors = true;
+  } else if (!/^[a-zA-Z ]+$/.test(form.bredFor)) {
+    errors.bredFor = "Must have only characters";
+    errors.hasErrors = true;
+  } else if (form.temperament.length < 1) {
+    errors.temperament = "Choose at least one temperament";
+    errors.hasErrors = true;
+  }
+
+  return errors;
+};
+
+
+
+
+
+
 const Formulario = () => {
-  const history = useHistory();
+ const history = useHistory()
   const [newBreed, setNewBreed] = useState({
     name: "",
     origin: "",
@@ -24,42 +66,7 @@ const Formulario = () => {
 
   const temperamentList = useSelector((state) => state.temperaments);
 
-  const validateForm = (form) => {
-    let errors = {
-      hasErrors: false,
-    };
-
-    if (!/^[a-zA-Z ]+$/.test(form.name)) {
-      errors.name = "Name must be only characters";
-      errors.hasErrors = true;
-    } else if (!/^[a-zA-Z ]+$/.test(form.origin)) {
-      errors.origin = "Origin must be onlye characters";
-      errors.hasErrors = true;
-    } else if (!/^[0-9]+$/.test(form.minHeight)) {
-      errors.minHeight = "Height must be a positive number";
-      errors.hasErrors = true;
-    } else if (!/^[0-9]+$/.test(form.maxHeight)) {
-      errors.maxHeight = "Height must be a positive number";
-      errors.hasErrors = true;
-    } else if (!/^[0-9]+$/.test(form.minWeight)) {
-      errors.minWeight = "Weight must be a positive number";
-      errors.hasErrors = true;
-    } else if (!/^[0-9]+$/.test(form.maxWeight)) {
-      errors.maxWeight = "Weight must be a positive number";
-      errors.hasErrors = true;
-    } else if (!/^[0-9]+$/.test(form.life)) {
-      errors.life = "Life span must be a positive number";
-      errors.hasErrors = true;
-    } else if (!/^[a-zA-Z ]+$/.test(form.bredFor)) {
-      errors.bredFor = "Must have only characters";
-      errors.hasErrors = true;
-    } else if (form.temperament.length < 1) {
-      errors.temperament = "Choose at least one temperament";
-      errors.hasErrors = true;
-    }
-
-    return errors;
-  };
+ 
 
   const handleChanges = (e) => {
     setNewBreed({ ...newBreed, [e.target.name]: e.target.value });
@@ -85,11 +92,9 @@ const Formulario = () => {
 
   const submitBreed = async (e) => {
     e.preventDefault();
-    if (Object.keys(errors).length > 0) {
-      alert("El formulario no se mando debido a errores");
-    } else {
-      setErrors({ ...errors, hasErrors: true });
-      await axios.post("http://localhost:3002/dog", newBreed);
+   
+    
+   
       setNewBreed({
         name: "",
         origin: "",
@@ -102,16 +107,19 @@ const Formulario = () => {
         temperament: [],
       });
       alert("Breed created");
-      history.push("/home");
-    }
+      setErrors({ ...errors, hasErrors: true });
+      history.push('/home');
+      await axios.post("http://localhost:3002/dog", newBreed);
   };
   useEffect(() => {
-    setAddTemp(temperamentList.slice(page * 10 - 10, page * 10));
+    setAddTemp(temperamentList.slice(page * 9 - 9, page * 9));
   }, [page, temperamentList]);
 
   return (
+    
     <div className={s.background}>
-      <form className={s.container} onSubmit={submitBreed}>
+      <h2>Create Breed</h2>
+      <form className={s.wrapper} onSubmit={submitBreed}>
         <div className={s.formContainer}>
           <input
             className={errors.name ? s.inputHasErrors : s.formInputs}
@@ -196,7 +204,7 @@ const Formulario = () => {
             <p className={s.textHasErrors}>{errors.bredFor}</p>
           )}
         </div>
-        <div className={s.tempContainer}>
+        <div className={s.tempWrapper}>
           <textarea
             className={
               errors.temperament ? s.tempsInputHasErrors : s.tempsInput
@@ -209,7 +217,7 @@ const Formulario = () => {
           {errors.temperament && (
             <p className={s.textHasErrors}>{errors.temperament}</p>
           )}
-          <div className={s.tempBtnContainer}>
+          <div className={s.tempBtnWrapper}>
             {addTemp.map((temp) => {
               return (
                 <button
@@ -240,9 +248,9 @@ const Formulario = () => {
             <button
               type="button"
               className={
-                addTemp.length < 10 ? s.tempDisabledPageBtn : s.tempPageBtn
+                addTemp.length < 9 ? s.tempDisabledPageBtn : s.tempPageBtn
               }
-              disabled={addTemp.length < 10}
+              disabled={addTemp.length < 9}
               onClick={() => setPage(page + 1)}
             >
               {page + 1}
@@ -251,13 +259,13 @@ const Formulario = () => {
         </div>
         <div className={s.btnContainer}>
           <button
-            className={errors.hasErrors ? s.btnDisabled : s.btn}
+            className={errors.hasErrors ? s.myButtondisabled : s.myButton}
             disabled={errors.hasErrors}
           >
             CREATE BREED!
           </button>
           <Link to="/home">
-            <button type="button" className={s.btn}>
+            <button type="button" className={s.myButton}>
               BACK
             </button>
           </Link>

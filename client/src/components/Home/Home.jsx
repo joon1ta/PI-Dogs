@@ -4,7 +4,7 @@ import Nav from "..//Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getBreeds, getTemperaments } from "../../redux/actions/index";
-
+import s from './Home.module.css';
 
 const Home = () => {
  
@@ -20,7 +20,7 @@ const Home = () => {
   }, [dispatch]);  
 
   return (
-    <div>
+    <div className={s.wrapper}>
       <Nav filter={filter} setFilter={setFilter} />
       <Dogs filter={filter} />
     </div>

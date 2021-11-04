@@ -50,6 +50,7 @@ const getBreeds = async () => {
     return {
       id: breed.id,
       name: breed.name,
+      original: breed.original,
       minHeight: breed.minHeight,
       maxHeight: breed.maxHeight,
       minWeight: breed.minWeight,

@@ -3,6 +3,7 @@ import { useSelector} from 'react-redux';
 import { Link } from 'react-router-dom'
 import DogsCardscontainer from '../DogsCardsContainer/DogsCardsContainer'
 import s from './Dogs.module.css'
+
 const Dogs = ({filter}) => {
 
 const breeds = useSelector(state => state.breeds)
@@ -61,12 +62,13 @@ const filterFunction = () => {
     if (filter.sortBy === "CUSTOM_BREED") {
       filtBreeds = filtBreeds.filter((breed) =>
         breed.hasOwnProperty("original")
+       
       );
+     
     }
     setLength(filtBreeds.length);
     setFilteredBreeds(filtBreeds.slice(page * 8 - 8, page * 8));
 };
-
 
 
 
@@ -78,7 +80,9 @@ useEffect(() => {
 
 if(filteredBreeds < 1) {
   return (
-    <h1>No data to Show</h1>
+    <div className={s.wrapperLoading}>
+      <h2>No data to Show</h2>
+    </div>
   )
 }
 
@@ -89,7 +93,7 @@ return (
             { 
                 filteredBreeds.map(breed => {
                     return (
-                        <Link key={breed.id} to={`/dogdetail/${breed.id}`}>
+                        <Link className={s.link} key={breed.id} to={`/dogdetail/${breed.id}`}>
                         <DogsCardscontainer 
                         key={breed.id}
                         name={breed.name} 
