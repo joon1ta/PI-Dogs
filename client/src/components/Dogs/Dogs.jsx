@@ -1,29 +1,29 @@
-import React, { useEffect,useState } from 'react';
-import { useSelector} from 'react-redux';
-import { Link } from 'react-router-dom'
-import DogsCardscontainer from '../DogsCardsContainer/DogsCardsContainer'
-import s from './Dogs.module.css'
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import DogsCardscontainer from "../DogsCardsContainer/DogsCardsContainer";
+import s from "./Dogs.module.css";
 
-const Dogs = ({filter}) => {
+const Dogs = ({ breedfilter }) => {
+  console.log(breedfilter);
+  const breeds = useSelector((state) => state.breeds);
 
-const breeds = useSelector(state => state.breeds)
-
-const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [length, setLength] = useState(0);
   const [filteredBreeds, setFilteredBreeds] = useState([]);
 
-const filterFunction = () => {
-    // Mover el filtro de temperamento a un nuevo componente y manejarlo como arrays.
+  const filterFunction = () => {
     let filtBreeds = breeds.filter(
       (breed) =>
-        breed.name.toUpperCase().includes(filter.name.toUpperCase()) &&
+        breed.name.toUpperCase().includes(breedfilter.name.toUpperCase()) &&
         breed.temperament
           ?.join(", ")
           .toUpperCase()
-          .includes(filter.temperament.toUpperCase())
+          .includes(breedfilter.temperament.toUpperCase())
     );
-
-    if (filter.sortBy === "A_Z") {
+    console.log(filtBreeds);
+    console.log(breedfilter);
+    if (breedfilter.sortBy === "A_Z") {
       filtBreeds = filtBreeds.sort((a, b) =>
         a.name[0].toUpperCase() > b.name[0].toUpperCase()
           ? 1
@@ -33,7 +33,7 @@ const filterFunction = () => {
       );
     }
 
-    if (filter.sortBy === "Z_A") {
+    if (breedfilter.sortBy === "Z_A") {
       filtBreeds = filtBreeds
         .sort((a, b) =>
           a.name[0].toUpperCase() > b.name[0].toUpperCase()
@@ -45,13 +45,13 @@ const filterFunction = () => {
         .reverse();
     }
 
-    if (filter.sortBy === "LIGHTER") {
+    if (breedfilter.sortBy === "LIGHTER") {
       filtBreeds = filtBreeds.sort((a, b) =>
         a.maxWeight > b.maxWeight ? 1 : a.maxWeight < b.maxWeight ? -1 : 0
       );
     }
 
-    if (filter.sortBy === "HEAVIER") {
+    if (breedfilter.sortBy === "HEAVIER") {
       filtBreeds = filtBreeds
         .sort((a, b) =>
           a.maxWeight > b.maxWeight ? 1 : a.maxWeight < b.maxWeight ? -1 : 0
@@ -59,60 +59,32 @@ const filterFunction = () => {
         .reverse();
     }
 
-    if (filter.sortBy === "CUSTOM_BREED") {
+    if (breedfilter.sortBy === "CUSTOM_BREED") {
       filtBreeds = filtBreeds.filter((breed) =>
         breed.hasOwnProperty("original")
-       
       );
-     
     }
     setLength(filtBreeds.length);
     setFilteredBreeds(filtBreeds.slice(page * 8 - 8, page * 8));
-};
+  };
 
+  useEffect(filterFunction, [breeds, page, breedfilter]);
 
-
-useEffect(filterFunction, [breeds, page, filter]);
-
-useEffect(() => {
+  useEffect(() => {
     setPage(1);
-  }, [filter]);
+  }, [breedfilter]);
 
-if(filteredBreeds < 1) {
+  if (filteredBreeds < 1) {
+    return (
+      <div className={s.wrapperLoading}>
+        <h2>No data to Show</h2>
+      </div>
+    );
+  }
+
   return (
-    <div className={s.wrapperLoading}>
-      <h2>No data to Show</h2>
-    </div>
-  )
-}
-
-
-return (
-        <div className={s.wrapper}>
-            
-            { 
-                filteredBreeds.map(breed => {
-                    return (
-                        <Link className={s.link} key={breed.id} to={`/dogdetail/${breed.id}`}>
-                        <DogsCardscontainer 
-                        key={breed.id}
-                        name={breed.name} 
-                        minHeight={breed.minHeight}
-                        maxHeight={breed.maxHeight}
-                        minWeight={breed.minWeight}
-                        maxWeight={breed.maxWeight}
-                        id={breed.id}
-                        photo={breed.photo}
-                        temperament={breed.temperament}
-                        />
-                        </Link>
-                    
-                    
-                    )
-                    })
-            }
-
-<div className={s.paginate}>
+    <div>
+      <div className={s.paginate}>
         <button
           className={page < 2 ? s.pagDisabledBtn : s.pagBtn}
           disabled={page < 2}
@@ -145,8 +117,28 @@ return (
           {">>"}
         </button>
       </div>
-        </div>
-    )
-}
+      <div className={s.wrapper}>
+      {filteredBreeds.map((breed) => {
+        return (
+          <Link className={s.link} key={breed.id} to={`/dogdetail/${breed.id}`}>
+            <DogsCardscontainer
+              key={breed.id}
+              name={breed.name}
+              minHeight={breed.minHeight}
+              maxHeight={breed.maxHeight}
+              minWeight={breed.minWeight}
+              maxWeight={breed.maxWeight}
+              id={breed.id}
+              photo={breed.photo}
+              temperament={breed.temperament}
+            />
+          </Link>
+        );
+      })}
+    </div>
+    </div>
+    
+  );
+};
 
-export default Dogs
+export default Dogs;

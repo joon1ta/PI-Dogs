@@ -9,7 +9,7 @@ import s from './Home.module.css';
 const Home = () => {
  
   const dispatch = useDispatch();
-  const [filter, setFilter] = useState({
+  const [breedfilter, setBreedFilter] = useState({
     name: "",
     temperament: "",
     sortBy: "",
@@ -21,8 +21,8 @@ const Home = () => {
 
   return (
     <div className={s.wrapper}>
-      <Nav filter={filter} setFilter={setFilter} />
-      <Dogs filter={filter} />
+      <Nav breedfilter={breedfilter} setBreedFilter={setBreedFilter} />
+      <Dogs breedfilter={breedfilter} />
     </div>
   );
 };

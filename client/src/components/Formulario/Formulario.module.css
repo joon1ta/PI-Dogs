@@ -141,3 +141,68 @@ padding-left: 10px;
   .tempWrapper .textHasErrors {
       margin-left: 50px;
   }
+
+  .pageBtnContainer {
+    margin-left: 135px;
+    margin-top: 30px;
+
+  }
+
+.tempPageBtn{
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, #2a8d8369 5%, #19423e93 100%);
+  background-color: #7ed5cc2f;
+  border-radius: 2px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+}
+.tempDisabledPageBtn{
+  background: linear-gradient(to bottom, #7ed5cc69 5%, #9ccec993 100%);
+  background-color: #7ed5cc2f;
+  border-radius: 2px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  margin-right: 6px;
+  margin-left: 6px;
+}
+
+
+
+  /** Desktop **/
+
+@media (min-width: 1200px) {
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 383px;
+    width: 40vw;
+  }
+  .tempWrapper textarea {
+    width: 480px;
+  
+    border-radius: 5px;
+    margin-left: 380px;
+ }
+  .tempBtnWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    gap: 3px;
+    padding: 5px;
+    width: 480px;
+    margin-left: 380px;
+}
+  .btnContainer{
+    margin-left: 440px;
+  }
+ .pageBtnContainer{
+  margin-left: 590px;
+  margin-top: 25px;
+ }
+}

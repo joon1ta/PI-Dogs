@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import s from "./Nav.module.css";
 
-const Nav = ({ filter, setFilter }) => {
+const Nav = ({ breedfilter, setBreedFilter }) => {
   const handleChange = (e) => {
-    setFilter({ ...filter, [e.target.name]: e.target.value });
+    setBreedFilter({ ...breedfilter, [e.target.name]: e.target.value });
   };
 
   const handleSort = (e) => {
-    setFilter({ ...filter, sortBy: e.target.name });
+    setBreedFilter({ ...breedfilter, sortBy: e.target.name });
   };
     
         return (
@@ -49,7 +49,7 @@ const Nav = ({ filter, setFilter }) => {
                 <input
                   className={s.filterInputs}
                   name="name"
-                  value={filter.breed}
+                  value={breedfilter.breed}
                   onChange={handleChange}
                 
                   placeholder="Search for breed"
@@ -57,7 +57,7 @@ const Nav = ({ filter, setFilter }) => {
                 <input
                   className={s.filterInputs}
                   name="temperament"
-                  value={filter.temperament}
+                  value={breedfilter.temperament}
                   onChange={handleChange}
                 
                   placeholder="Filter by temperament"

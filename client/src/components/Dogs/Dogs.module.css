@@ -21,7 +21,51 @@
    transform: scale(1.03);
    background-color: #7ed5cc1c;
 }
-
+.paginate {
+    margin-left: 550px;
+    margin-top: 15px;
+}
+.pagBtn{
+ width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, #2a8d8369 5%, #19423e93 100%);
+  background-color: #7ed5cc2f;
+  border-radius: 2px;
+  border: none;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;   
+}
+.pagBtn:hover {
+    transition: all .3s ease-in-out;
+    color: black;
+}
+.pagInvisibleBtn{
+    background: linear-gradient(to bottom, #7ed5cc69 5%, #9ccec993 100%);
+    background-color: #7ed5cc2f;
+    border-radius: 2px;
+    border: none;
+    display: inline-block;
+    
+    color: #ffffff;
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+    margin-left: 6px;  
+}
+.pagDisabledBtn{
+    background: linear-gradient(to bottom, #7ed5cc69 5%, #9ccec993 100%);
+  background-color: #7ed5cc2f;
+  border-radius: 2px;
+  border: none;
+  display: inline-block;
+ 
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  margin-right: 6px;
+  margin-left: 6px;
+}
 
 @media (min-width: 768px) {
     .wrapper {
