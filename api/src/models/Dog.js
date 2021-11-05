@@ -45,7 +45,7 @@ module.exports = (sequelize) => {
     },
     photo: {
       type: DataTypes.STRING,
-      defaultValue: "No Data to show"
+      defaultValue: "No Data to Show"
     },
     origin: {
       type: DataTypes.STRING,

@@ -1,6 +1,6 @@
 const { Dog, conn } = require('../../src/db.js');
 const { expect } = require('chai');
-
+const {breeds} = require('../routes/testData')
 describe('Dog model', () => {
   before(() => conn.authenticate()
     .catch((err) => {
@@ -18,5 +18,27 @@ describe('Dog model', () => {
         Dog.create({ name: 'Pug' });
       });
     });
+    describe('create breeds', ()=> {
+      beforeEach(()=> {
+        Dog.bulkCreate(breeds)
+      })
+      describe('search breed', ()=> {
+        it('length db', done => {
+          Dog.findAll()
+          .then(resp => expect(resp.length).to.be(2))
+          .catch(()=> done())
+        })
+        it('name breed', done => {
+          Dog.findAll()
+          .then(resp => expect(resp[0].name).to.be.true('Castor'))
+          .catch(() => done())
+        })
+        it('fake name breed', done => {
+          Dog.findAll()
+          .then(resp => expect(resp[1].name).to.be.false('Castor'))
+          .catch(() => done())
+        });
+      })
+    })
   });
 });

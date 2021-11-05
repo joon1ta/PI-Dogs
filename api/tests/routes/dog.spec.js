@@ -2,8 +2,8 @@
 const { expect } = require('chai');
 const session = require('supertest-session');
 const app = require('../../src/app.js');
-const { Dog, conn } = require('../../src/db.js');
-
+const { Dog,Temperament, conn } = require('../../src/db.js');
+const { breeds, temperaments } = require("./testData");
 const agent = session(app);
 const dog = {
   name: 'Pug',
@@ -21,4 +21,19 @@ describe('Videogame routes', () => {
       agent.get('/dogs').expect(200)
     );
   });
+describe('POST /dogs', () => {
+  it('Create Breed', ()=> {
+    agent.post('/dogs').send({
+      name: {},
+
+        height: breeds[0].height,
+
+        weight: breeds[0].weight,
+
+        life: breeds[0].life,
+
+        temperament: temperaments[0]
+    })
+  })
+})
 });
