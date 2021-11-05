@@ -120,7 +120,7 @@ const Dogs = ({ breedfilter }) => {
       <div className={s.wrapper}>
       {filteredBreeds.map((breed) => {
         return (
-          <Link className={s.link} key={breed.id} to={`/dogdetail/${breed.id}`}>
+          <Link className={s.link}  to={`/dogdetail/${breed.id}`}>
             <DogsCardscontainer
               key={breed.id}
               name={breed.name}
