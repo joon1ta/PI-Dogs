@@ -7,7 +7,7 @@ const DogDetail = () => {
   const { id } = useParams();
   const [breed, setBreed] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(breed);
+
   useEffect(() => {
     try {
       const getDetailBreed = async () => {
@@ -29,7 +29,7 @@ const DogDetail = () => {
           </div>
      
   }
-  console.log(breed[0].temperament);
+ 
 
   return (
     <div className={s.wrapper}>

@@ -22,7 +22,7 @@
    background-color: #7ed5cc1c;
 }
 .paginate {
-    margin-left: 550px;
+    margin-left: 100px;
     margin-top: 15px;
 }
 .pagBtn{
@@ -88,5 +88,9 @@
         margin-right: 20px;
         gap: 40px;
         
+    }
+    .paginate {
+        margin-left: 550px;
+        margin-top: 15px;
     }
 }

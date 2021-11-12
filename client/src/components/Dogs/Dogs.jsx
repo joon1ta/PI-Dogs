@@ -5,7 +5,7 @@ import DogsCardscontainer from "../DogsCardsContainer/DogsCardsContainer";
 import s from "./Dogs.module.css";
 
 const Dogs = ({ breedfilter }) => {
-  console.log(breedfilter);
+ 
   const breeds = useSelector((state) => state.breeds);
 
   const [page, setPage] = useState(1);
@@ -21,8 +21,7 @@ const Dogs = ({ breedfilter }) => {
           .toUpperCase()
           .includes(breedfilter.temperament.toUpperCase())
     );
-    console.log(filtBreeds);
-    console.log(breedfilter);
+    
     if (breedfilter.sortBy === "A_Z") {
       filtBreeds = filtBreeds.sort((a, b) =>
         a.name[0].toUpperCase() > b.name[0].toUpperCase()
@@ -120,7 +119,7 @@ const Dogs = ({ breedfilter }) => {
       <div className={s.wrapper}>
       {filteredBreeds.map((breed) => {
         return (
-          <Link className={s.link}  to={`/dogdetail/${breed.id}`}>
+          <Link className={s.link} key={breed.id}  to={`/dogdetail/${breed.id}`}>
             <DogsCardscontainer
               key={breed.id}
               name={breed.name}
